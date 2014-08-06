@@ -10,10 +10,13 @@ RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
 
 # Install needed requirements for the Mozilla Syncserver
 RUN apt-get update
-RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes python-dev git-core python-virtualenv
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes python-dev git-core python-virtualenv python-setuptools libpq-dev
 
 # Install build environment
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes build-essential
+
+# Install some Python dependencies
+RUN easy_install psycopg2
 
 # Install other tools.
 #RUN DEBIAN_FRONTEND=noninteractive apt-get install -y pwgen ca-certificates
