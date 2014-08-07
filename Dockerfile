@@ -43,6 +43,9 @@ RUN su ffsync -c 'git clone https://github.com/mozilla-services/syncserver'
 WORKDIR /home/ffsync/syncserver
 RUN su ffsync -c 'make build'
 
+# Install some Python dependencies (in virtualenv)
+RUN /home/ffsync/syncserver/local/bin/easy_install psycopg2
+
 # Expose port 5000 and start the server
 EXPOSE 5000
 
